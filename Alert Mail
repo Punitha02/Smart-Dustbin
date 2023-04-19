@@ -1,0 +1,11 @@
+data = thingSpeakRead(2108104);
+full_dist = 10
+apiKey = 'TAKHhZtypXs4NfBO5N+';
+alertURL = "https://api.thingspeak.com/alerts/send";
+options = weboptions("HeaderFields",["ThingSpeak-Alerts-API-Key", apiKey]);
+alertBody = sprintf("The dustbin is full! Please empty!");
+alert_subject = 'Dustbin Full';
+
+if data < full_dist
+    webwrite(alertURL, "body", alertBody, "subject", alert_subject, options);
+end
